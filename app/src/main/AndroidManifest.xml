@@ -6,7 +6,6 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -14,7 +13,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.UniAlert">
-
+        <activity
+            android:name=".NewsActivity"
+            android:exported="false" />
         <!-- Google Maps API Key -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -23,25 +24,21 @@
         <activity
             android:name=".AboutActivity"
             android:exported="false" />
-
         <activity
             android:name=".ReportIncidentActivity"
             android:exported="false" />
-
         <activity
             android:name=".MapActivity"
-            android:exported="false" />
-
-        <!-- LAUNCHER ACTIVITY -->
+            android:exported="false" /> <!-- LAUNCHER ACTIVITY -->
         <activity
             android:name=".LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>

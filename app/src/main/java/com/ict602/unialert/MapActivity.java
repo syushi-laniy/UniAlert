@@ -41,7 +41,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     private FirebaseFirestore db;
 
     private TextView tvGreeting;
-    private Button btnReport, btnAbout, btnLogout;
+    private Button btnReport, btnAbout, btnLogout, btnNews ;
 
     private Snackbar noInternetSnack;
     private final Handler netHandler = new Handler();
@@ -74,6 +74,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         btnReport = findViewById(R.id.btnReport);
         btnAbout = findViewById(R.id.btnAbout);
         btnLogout = findViewById(R.id.btnLogout);
+        btnNews = findViewById(R.id.btnNews);
 
         auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
@@ -96,6 +97,9 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
         btnAbout.setOnClickListener(v ->
                 startActivity(new Intent(this, AboutActivity.class)));
+
+        btnNews.setOnClickListener(v ->
+                startActivity(new Intent(this, NewsActivity.class)));
 
         btnLogout.setOnClickListener(v -> {
             FirebaseAuth.getInstance().signOut();

@@ -1,45 +1,315 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:padding="16dp"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#F4F6F8"
+    android:padding="20dp">
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal">
 
+        <!-- ABOUT US TITLE -->
+        <TextView
+            android:text="ABOUT US"
+            android:textAllCaps="true"
+            android:textSize="14sp"
+            android:letterSpacing="0.15"
+            android:textColor="#3F51B5"
+            android:layout_marginBottom="6dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <!-- App Logo -->
+        <ImageView
+            android:src="@drawable/ic_launcher_foreground"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginBottom="8dp"/>
+
+        <!-- App Name -->
         <TextView
             android:text="UniAlert"
-            android:textSize="24sp"
+            android:textSize="28sp"
             android:textStyle="bold"
+            android:textColor="#1A237E"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
         <TextView
-            android:id="@+id/tvMembers"
-            android:layout_marginTop="12dp"
-            android:text="Developers:\n- Nurul Lailani Asyura (ICT602)\n- Member 2\n- Member 3\n- Member 4"
+            android:text="Campus Safety & Incident Reporting"
+            android:textSize="14sp"
+            android:textColor="#666666"
+            android:layout_marginBottom="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <!-- DEVELOPERS TITLE -->
+        <TextView
+            android:text="Developers"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#333333"
+            android:layout_marginBottom="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <!-- DEVELOPERS CARD -->
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            card_view:cardCornerRadius="12dp"
+            card_view:cardElevation="6dp">
 
+            <LinearLayout
+                android:orientation="vertical"
+                android:padding="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:text="Group: ICT602 Group X"
+                    android:textStyle="bold"
+                    android:textColor="#444444"
+                    android:layout_marginBottom="16dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <!-- MEMBER 1 -->
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:src="@drawable/profile_lailani"
+                        android:layout_width="56dp"
+                        android:layout_height="56dp"
+                        android:background="@drawable/circle_image"
+                        android:clipToOutline="true"
+                        android:scaleType="centerCrop"/>
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_marginStart="12dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Nurul Lailani Asyura"
+                            android:textStyle="bold"
+                            android:textSize="15sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                        <TextView
+                            android:text="Student No: 2023899266"
+                            android:textColor="#555555"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                        <TextView
+                            android:text="Program Code: CDCS2515B"
+                            android:textColor="#555555"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="12dp"
+                    android:background="#E0E0E0"/>
+
+                <!-- MEMBER 2 -->
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:src="@drawable/profile_najwa"
+                        android:layout_width="56dp"
+                        android:layout_height="56dp"
+                        android:background="@drawable/circle_image"
+                        android:clipToOutline="true"
+                        android:scaleType="centerCrop"/>
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_marginStart="12dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Nurhanisa Najwa binti Nordin"
+                            android:textStyle="bold"
+                            android:textSize="15sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                        <TextView
+                            android:text="Student No: 2023414412"
+                            android:textColor="#555555"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                        <TextView
+                            android:text="Program Code: CDCS2515B"
+                            android:textColor="#555555"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="12dp"
+                    android:background="#E0E0E0"/>
+
+                <!-- MEMBER 3 -->
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:src="@drawable/profile_tassnim"
+                        android:layout_width="56dp"
+                        android:layout_height="56dp"
+                        android:background="@drawable/circle_image"
+                        android:clipToOutline="true"
+                        android:scaleType="centerCrop"/>
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_marginStart="12dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Puteri Noor Tassnim binti Abdul Mu'iz"
+                            android:textStyle="bold"
+                            android:textSize="15sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                        <TextView
+                            android:text="Student No: 2023837452"
+                            android:textColor="#555555"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                        <TextView
+                            android:text="Program Code: CDCS2515B"
+                            android:textColor="#555555"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="12dp"
+                    android:background="#E0E0E0"/>
+
+                <!-- MEMBER 4 -->
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:src="@drawable/profile_afieda"
+                        android:layout_width="56dp"
+                        android:layout_height="56dp"
+                        android:background="@drawable/circle_image"
+                        android:clipToOutline="true"
+                        android:scaleType="centerCrop"/>
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_marginStart="12dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Raja Nur Afieda binti Raja Abdul Halim"
+                            android:textStyle="bold"
+                            android:textSize="15sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                        <TextView
+                            android:text="Student No: 2023601134"
+                            android:textColor="#555555"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                        <TextView
+                            android:text="Program Code: CDCS2515B"
+                            android:textColor="#555555"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- WEBSITE -->
         <TextView
-            android:layout_marginTop="12dp"
-            android:text="Website:"
+            android:text="Website"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#333333"
+            android:layout_marginBottom="8dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
-        <TextView
-            android:id="@+id/tvUrl"
-            android:text="https://github.com/yourrepo"
-            android:textColor="#1565C0"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            card_view:cardCornerRadius="12dp"
+            card_view:cardElevation="6dp">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:padding="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tvUrl"
+                    android:text="View UniAlert GitHub Repository"
+                    android:textColor="#1565C0"
+                    android:textSize="15sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
 
         <TextView
-            android:layout_marginTop="12dp"
             android:text="© 2026 UniAlert. All rights reserved."
+            android:textSize="12sp"
+            android:textColor="#888888"
+            android:layout_marginTop="24dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
+
     </LinearLayout>
 </ScrollView>

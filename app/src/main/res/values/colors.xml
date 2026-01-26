@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="celadon">#89d2a3</color>
+    <color name="celadon_light">#b5e8a4</color>
+    <color name="cotton_rose">#ffc8c4</color>
+    <color name="cherry_blossom">#ffb0c4</color>
+    <color name="baby_pink">#ff97c4</color>
 </resources>
+

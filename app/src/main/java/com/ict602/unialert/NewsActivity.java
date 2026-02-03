@@ -17,6 +17,8 @@ import java.util.List;
 
 public class NewsActivity extends AppCompatActivity {
 
+    private View emptyState;
+
     private RecyclerView recyclerView;
     private ProgressBar progressBar;
     private NewsAdapter adapter;
@@ -28,6 +30,8 @@ public class NewsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news);
+
+        emptyState = findViewById(R.id.emptyState);
 
         recyclerView = findViewById(R.id.recyclerNews);
         progressBar = findViewById(R.id.progressNews);
@@ -51,6 +55,9 @@ public class NewsActivity extends AppCompatActivity {
 
         progressBar.setVisibility(View.VISIBLE);
 
+        recyclerView.setVisibility(View.GONE);
+        emptyState.setVisibility(View.GONE);
+
         db.collection("news")
                 .orderBy("createdAt", Query.Direction.DESCENDING)
                 .get()
@@ -59,10 +66,14 @@ public class NewsActivity extends AppCompatActivity {
                     newsList.clear();
 
                     if (snapshot.isEmpty()) {
-                        Snackbar.make(findViewById(android.R.id.content),
-                                "No latest news available", Snackbar.LENGTH_LONG).show();
+                        recyclerView.setVisibility(View.GONE);
+                        emptyState.setVisibility(View.VISIBLE);
                         return;
                     }
+
+// kalau ada data
+                    emptyState.setVisibility(View.GONE);
+                    recyclerView.setVisibility(View.VISIBLE);
 
                     snapshot.forEach(doc -> {
                         String title = doc.getString("title");

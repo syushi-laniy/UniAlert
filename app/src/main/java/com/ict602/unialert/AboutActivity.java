@@ -14,10 +14,10 @@ public class AboutActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
 
-        TextView tvWebsite = findViewById(R.id.tvWebsite);
+        TextView tvUrl = findViewById(R.id.tvUrl);
 
         tvUrl.setOnClickListener(v -> {
-            String url = "https://github.com/yourrepo";
+            String url = "https://github.com/syushi-laniy/UniAlert";
             startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
         });
     }

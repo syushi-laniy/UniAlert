@@ -11,8 +11,7 @@
         <item name="colorSecondaryContainer">@color/baby_pink</item>
 
         <!-- Background -->
-        <item name="android:colorBackground">@color/cotton_rose</item>
-
+        <item name="android:colorBackground">@android:color/white</item>
         <!-- Text -->
         <item name="android:textColorPrimary">@android:color/black</item>
     </style>

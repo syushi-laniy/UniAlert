@@ -2,6 +2,7 @@ package com.ict602.unialert;
 
 import android.os.Build;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -10,6 +11,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FieldValue;
@@ -32,6 +34,9 @@ public class ReportIncidentActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_report_incident);
 
+        MaterialToolbar topAppBar = findViewById(R.id.topAppBar);
+        topAppBar.setNavigationOnClickListener(v -> finish());
+
         auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
 
@@ -40,7 +45,15 @@ public class ReportIncidentActivity extends AppCompatActivity {
         btnSubmit = findViewById(R.id.btnSubmit);
 
         String[] categories = new String[]{"accident", "crime", "facility", "other"};
-        spCategory.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, categories));
+
+        // ✅ FIX: custom spinner text color (hitam) + dropdown background cream
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(
+                this,
+                R.layout.spinner_item_black,
+                categories
+        );
+        adapter.setDropDownViewResource(R.layout.spinner_dropdown_item_black);
+        spCategory.setAdapter(adapter);
 
         btnSubmit.setOnClickListener(v -> submit());
     }

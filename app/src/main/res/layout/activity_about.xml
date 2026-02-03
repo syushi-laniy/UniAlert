@@ -1,315 +1,371 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F4F6F8"
-    android:padding="20dp">
+    android:background="@android:color/white"
+    android:padding="20dp"
+    android:fillViewport="true">
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
         android:gravity="center_horizontal">
 
-        <!-- ABOUT US TITLE -->
+        <!-- Header -->
         <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="ABOUT US"
             android:textAllCaps="true"
             android:textSize="14sp"
             android:letterSpacing="0.15"
-            android:textColor="#3F51B5"
-            android:layout_marginBottom="6dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-        <!-- App Logo -->
-        <ImageView
-            android:src="@drawable/ic_launcher_foreground"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:textStyle="bold"
+            android:textColor="@color/baby_pink"
             android:layout_marginBottom="8dp"/>
 
-        <!-- App Name -->
-        <TextView
-            android:text="UniAlert"
-            android:textSize="28sp"
-            android:textStyle="bold"
-            android:textColor="#1A237E"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+        <!-- App Card -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="4dp"
+            app:strokeColor="@color/cotton_rose"
+            app:strokeWidth="1dp"
+            app:cardBackgroundColor="@color/card_cream"
+            android:layout_marginBottom="18dp">
 
-        <TextView
-            android:text="Campus Safety & Incident Reporting"
-            android:textSize="14sp"
-            android:textColor="#666666"
-            android:layout_marginBottom="20dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp"
+                android:gravity="center_horizontal">
 
-        <!-- DEVELOPERS TITLE -->
+                <ImageView
+                    android:layout_width="72dp"
+                    android:layout_height="72dp"
+                    android:src="@mipmap/ic_launcher"
+                    android:contentDescription="App logo" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="UniAlert"
+                    android:textSize="26sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/text_dark"
+                    android:layout_marginTop="6dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Campus Safety &amp; Incident Reporting"
+                    android:textSize="13sp"
+                    android:textColor="@color/text_muted"
+                    android:layout_marginTop="4dp"/>
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Developers -->
         <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:text="Developers"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:textColor="#333333"
-            android:layout_marginBottom="8dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:textColor="@color/celadon"
+            android:layout_marginBottom="10dp"/>
 
-        <!-- DEVELOPERS CARD -->
-        <androidx.cardview.widget.CardView
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            card_view:cardCornerRadius="12dp"
-            card_view:cardElevation="6dp">
+            app:cardCornerRadius="18dp"
+            app:cardElevation="4dp"
+            app:strokeColor="@color/cotton_rose"
+            app:strokeWidth="1dp"
+            app:cardBackgroundColor="@color/card_cream"
+            android:layout_marginBottom="18dp">
 
             <LinearLayout
-                android:orientation="vertical"
-                android:padding="16dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
 
                 <TextView
-                    android:text="Group: ICT602 Group X"
-                    android:textStyle="bold"
-                    android:textColor="#444444"
-                    android:layout_marginBottom="16dp"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:text="ICT602"
+                    android:textStyle="bold"
+                    android:textColor="@color/text_dark"
+                    android:layout_marginBottom="14dp"/>
 
                 <!-- MEMBER 1 -->
                 <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_marginBottom="16dp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="14dp"
+                    android:gravity="center_vertical">
 
-                    <ImageView
-                        android:src="@drawable/profile_lailani"
+                    <com.google.android.material.imageview.ShapeableImageView
                         android:layout_width="56dp"
                         android:layout_height="56dp"
-                        android:background="@drawable/circle_image"
-                        android:clipToOutline="true"
-                        android:scaleType="centerCrop"/>
+                        android:src="@drawable/profile_lailani"
+                        android:scaleType="centerCrop"
+                        app:shapeAppearanceOverlay="@style/FullCircle"
+                        app:strokeWidth="2dp"
+                        app:strokeColor="@color/cotton_rose" />
 
                     <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
                         android:orientation="vertical"
-                        android:layout_marginStart="12dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
+                        android:layout_marginStart="12dp">
 
                         <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:text="Nurul Lailani Asyura"
                             android:textStyle="bold"
                             android:textSize="15sp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
+                            android:textColor="@color/text_dark"/>
 
                         <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:text="Student No: 2023899266"
-                            android:textColor="#555555"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
+                            android:textColor="@color/text_muted"
+                            android:textSize="13sp"/>
 
                         <TextView
-                            android:text="Program Code: CDCS2515B"
-                            android:textColor="#555555"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-
+                            android:layout_height="wrap_content"
+                            android:text="Program Code: CDCS2515B"
+                            android:textColor="@color/text_muted"
+                            android:textSize="13sp"/>
                     </LinearLayout>
                 </LinearLayout>
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="12dp"
-                    android:background="#E0E0E0"/>
+                    android:background="@color/cotton_rose"
+                    android:layout_marginBottom="14dp"/>
 
                 <!-- MEMBER 2 -->
                 <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_marginBottom="16dp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="14dp"
+                    android:gravity="center_vertical">
 
-                    <ImageView
-                        android:src="@drawable/profile_najwa"
+                    <com.google.android.material.imageview.ShapeableImageView
                         android:layout_width="56dp"
                         android:layout_height="56dp"
-                        android:background="@drawable/circle_image"
-                        android:clipToOutline="true"
-                        android:scaleType="centerCrop"/>
+                        android:src="@drawable/profile_najwa"
+                        android:scaleType="centerCrop"
+                        app:shapeAppearanceOverlay="@style/FullCircle"
+                        app:strokeWidth="2dp"
+                        app:strokeColor="@color/cotton_rose" />
 
                     <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
                         android:orientation="vertical"
-                        android:layout_marginStart="12dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
+                        android:layout_marginStart="12dp">
 
                         <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:text="Nurhanisa Najwa binti Nordin"
                             android:textStyle="bold"
                             android:textSize="15sp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
+                            android:textColor="@color/text_dark"/>
 
                         <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:text="Student No: 2023414412"
-                            android:textColor="#555555"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
+                            android:textColor="@color/text_muted"
+                            android:textSize="13sp"/>
 
                         <TextView
-                            android:text="Program Code: CDCS2515B"
-                            android:textColor="#555555"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
+                            android:layout_height="wrap_content"
+                            android:text="Program Code: CDCS2515B"
+                            android:textColor="@color/text_muted"
+                            android:textSize="13sp"/>
                     </LinearLayout>
                 </LinearLayout>
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="12dp"
-                    android:background="#E0E0E0"/>
+                    android:background="@color/cotton_rose"
+                    android:layout_marginBottom="14dp"/>
 
                 <!-- MEMBER 3 -->
                 <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_marginBottom="16dp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="14dp"
+                    android:gravity="center_vertical">
 
-                    <ImageView
-                        android:src="@drawable/profile_tassnim"
+                    <com.google.android.material.imageview.ShapeableImageView
                         android:layout_width="56dp"
                         android:layout_height="56dp"
-                        android:background="@drawable/circle_image"
-                        android:clipToOutline="true"
-                        android:scaleType="centerCrop"/>
+                        android:src="@drawable/profile_tassnim"
+                        android:scaleType="centerCrop"
+                        app:shapeAppearanceOverlay="@style/FullCircle"
+                        app:strokeWidth="2dp"
+                        app:strokeColor="@color/cotton_rose" />
 
                     <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
                         android:orientation="vertical"
-                        android:layout_marginStart="12dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
+                        android:layout_marginStart="12dp">
 
                         <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:text="Puteri Noor Tassnim binti Abdul Mu'iz"
                             android:textStyle="bold"
                             android:textSize="15sp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
+                            android:textColor="@color/text_dark"/>
 
                         <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:text="Student No: 2023837452"
-                            android:textColor="#555555"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
+                            android:textColor="@color/text_muted"
+                            android:textSize="13sp"/>
 
                         <TextView
-                            android:text="Program Code: CDCS2515B"
-                            android:textColor="#555555"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
+                            android:layout_height="wrap_content"
+                            android:text="Program Code: CDCS2515B"
+                            android:textColor="@color/text_muted"
+                            android:textSize="13sp"/>
                     </LinearLayout>
                 </LinearLayout>
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="12dp"
-                    android:background="#E0E0E0"/>
+                    android:background="@color/cotton_rose"
+                    android:layout_marginBottom="14dp"/>
 
                 <!-- MEMBER 4 -->
                 <LinearLayout
-                    android:orientation="horizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
 
-                    <ImageView
-                        android:src="@drawable/profile_afieda"
+                    <com.google.android.material.imageview.ShapeableImageView
                         android:layout_width="56dp"
                         android:layout_height="56dp"
-                        android:background="@drawable/circle_image"
-                        android:clipToOutline="true"
-                        android:scaleType="centerCrop"/>
+                        android:src="@drawable/profile_afieda"
+                        android:scaleType="centerCrop"
+                        app:shapeAppearanceOverlay="@style/FullCircle"
+                        app:strokeWidth="2dp"
+                        app:strokeColor="@color/cotton_rose" />
 
                     <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
                         android:orientation="vertical"
-                        android:layout_marginStart="12dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
+                        android:layout_marginStart="12dp">
 
                         <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:text="Raja Nur Afieda binti Raja Abdul Halim"
                             android:textStyle="bold"
                             android:textSize="15sp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
+                            android:textColor="@color/text_dark"/>
 
                         <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:text="Student No: 2023601134"
-                            android:textColor="#555555"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
+                            android:textColor="@color/text_muted"
+                            android:textSize="13sp"/>
 
                         <TextView
-                            android:text="Program Code: CDCS2515B"
-                            android:textColor="#555555"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
+                            android:layout_height="wrap_content"
+                            android:text="Program Code: CDCS2515B"
+                            android:textColor="@color/text_muted"
+                            android:textSize="13sp"/>
                     </LinearLayout>
                 </LinearLayout>
 
             </LinearLayout>
-        </androidx.cardview.widget.CardView>
+        </com.google.android.material.card.MaterialCardView>
 
-        <!-- WEBSITE -->
+        <!-- Website -->
         <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:text="Website"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:textColor="#333333"
-            android:layout_marginBottom="8dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:textColor="@color/celadon"
+            android:layout_marginBottom="10dp"/>
 
-        <androidx.cardview.widget.CardView
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            card_view:cardCornerRadius="12dp"
-            card_view:cardElevation="6dp">
+            app:cardCornerRadius="18dp"
+            app:cardElevation="4dp"
+            app:strokeColor="@color/cotton_rose"
+            app:strokeWidth="1dp"
+            app:cardBackgroundColor="@color/card_cream">
 
             <LinearLayout
-                android:orientation="vertical"
-                android:padding="16dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
 
                 <TextView
                     android:id="@+id/tvUrl"
-                    android:text="View UniAlert GitHub Repository"
-                    android:textColor="#1565C0"
-                    android:textSize="15sp"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:text="View UniAlert GitHub Repository"
+                    android:textColor="@color/baby_pink"
+                    android:textSize="15sp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tap to open"
+                    android:textColor="@color/text_muted"
+                    android:textSize="12sp"
+                    android:layout_marginTop="4dp"/>
             </LinearLayout>
-        </androidx.cardview.widget.CardView>
+        </com.google.android.material.card.MaterialCardView>
 
         <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="© 2026 UniAlert. All rights reserved."
             android:textSize="12sp"
-            android:textColor="#888888"
-            android:layout_marginTop="24dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:textColor="@color/cotton_rose"
+            android:layout_marginTop="22dp"/>
 
     </LinearLayout>
 </ScrollView>

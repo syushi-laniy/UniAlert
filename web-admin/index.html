@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SafeCampus Admin</title>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Firebase SDKs (Compat for namespace-style usage) -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    
+    <!-- Your CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <!-- Login Page -->
+    <div id="loginPage" class="page login-page">
+        <div class="login-container">
+            <div class="login-header">
+                <div class="logo">
+                    <i class="fas fa-shield-alt"></i>
+                    <h1>SafeCampus Admin</h1>
+                </div>
+                <p class="tagline">Campus Safety Management System</p>
+            </div>
+            
+            <form id="loginForm" class="login-form">
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" id="email" placeholder="admin@campus.edu" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="password" placeholder="Enter password" required>
+                    </div>
+                </div>
+                
+                <button type="submit" class="btn btn-primary btn-block">
+                    <i class="fas fa-sign-in-alt"></i>
+                    Sign In to Dashboard
+                </button>
+            </form>
+            
+            <div id="loginError" class="alert alert-error hidden">
+                <i class="fas fa-exclamation-circle"></i>
+                <span id="errorText"></span>
+            </div>
+            
+            <div class="demo-credentials">
+                <p><strong>Demo Credentials:</strong></p>
+                <p>Email: admin@safecampus.edu</p>
+                <p>Password: Admin123!</p>
+            </div>
+            
+            <div class="login-footer">
+                <p>© 2024 SafeCampus Admin. University Safety System.</p>
+                <p class="small">For authorized administrators only</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dashboard Page -->
+    <div id="dashboardPage" class="page dashboard-page hidden">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-left">
+                <button id="menuToggle" class="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="brand">
+                    <i class="fas fa-shield-alt"></i>
+                    <h1>SafeCampus Admin</h1>
+                </div>
+            </div>
+            
+            <div class="header-right">
+                <div class="user-dropdown">
+                    <button class="user-btn" id="userBtn">
+                        <div class="user-avatar" id="userAvatar">A</div>
+                        <div class="user-info">
+                            <span class="user-name" id="userName">Admin User</span>
+                            <span class="user-role">Administrator</span>
+                        </div>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="dropdown-menu hidden" id="userMenu">
+                        <button class="dropdown-item" onclick="SafeCampus.logout()">
+                            <i class="fas fa-sign-out-alt"></i>
+                            Logout
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <div class="main-container">
+            <!-- Sidebar -->
+            <aside class="sidebar" id="sidebar">
+                <nav class="nav">
+                    <a href="#" class="nav-link active" data-section="dashboard">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>Dashboard</span>
+                    </a>
+                    
+                    <div class="nav-section">
+                        <div class="nav-section-title">Management</div>
+                        <a href="#" class="nav-link" data-section="incidents">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <span>Incident Reports</span>
+                            <span class="nav-badge" id="incidentsBadge">0</span>
+                        </a>
+                        <a href="#" class="nav-link" data-section="locations">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Campus Locations</span>
+                        </a>
+                        <a href="#" class="nav-link" data-section="news">
+                            <i class="fas fa-newspaper"></i>
+                            <span>News Updates</span>
+                        </a>
+                    </div>
+                    
+                    <div class="nav-section">
+                        <div class="nav-section-title">System</div>
+                        <a href="#" class="nav-link" data-section="analytics">
+                            <i class="fas fa-chart-bar"></i>
+                            <span>Analytics</span>
+                        </a>
+                        <a href="#" class="nav-link" data-section="about">
+                            <i class="fas fa-info-circle"></i>
+                            <span>About</span>
+                        </a>
+                    </div>
+                </nav>
+            </aside>
+
+            <!-- Content Area -->
+            <main class="content" id="contentArea">
+                <!-- Dashboard Section -->
+                <section class="content-section" id="dashboard">
+                    <div class="section-header">
+                        <h2><i class="fas fa-tachometer-alt"></i> Dashboard Overview</h2>
+                        <p>Welcome back, Admin. Manage campus safety from here.</p>
+                    </div>
+                    
+                    <!-- Stats Cards -->
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon" style="background: #89d2a3;">
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>Total Incidents</h3>
+                                <div class="stat-value" id="totalIncidents">0</div>
+                                <div class="stat-change">This month</div>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-icon" style="background: #b5e8a4;">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>Campus Locations</h3>
+                                <div class="stat-value" id="totalLocations">0</div>
+                                <div class="stat-change">Security posts & clinics</div>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-icon" style="background: #ffc8c4;">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>Active Users</h3>
+                                <div class="stat-value" id="totalUsers">0</div>
+                                <div class="stat-change">Mobile app users</div>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-icon" style="background: #ffb0c4;">
+                                <i class="fas fa-newspaper"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>News Posts</h3>
+                                <div class="stat-value" id="totalNews">0</div>
+                                <div class="stat-change">Published updates</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Quick Actions -->
+                    <div class="section-card">
+                        <h3><i class="fas fa-bolt"></i> Quick Actions</h3>
+                        <div class="quick-actions">
+                            <button class="action-btn" onclick="SafeCampus.showSection('incidents')">
+                                <i class="fas fa-list"></i>
+                                View All Incidents
+                            </button>
+                            <button class="action-btn" onclick="SafeCampus.showAddLocationModal()">
+                                <i class="fas fa-plus"></i>
+                                Add Location
+                            </button>
+                            <button class="action-btn" onclick="SafeCampus.showAddNewsModal()">
+                                <i class="fas fa-bullhorn"></i>
+                                Post News
+                            </button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Incidents Section -->
+                <section class="content-section hidden" id="incidents">
+                    <div class="section-header">
+                        <h2><i class="fas fa-exclamation-triangle"></i> Incident Reports</h2>
+                        <p>View and manage reports from mobile app users</p>
+                        <div class="section-actions">
+                            <button class="btn btn-primary" onclick="SafeCampus.loadIncidents()">
+                                <i class="fas fa-sync-alt"></i>
+                                Refresh
+                            </button>
+                            <button class="btn btn-secondary" onclick="SafeCampus.exportIncidents()">
+                                <i class="fas fa-download"></i>
+                                Export
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="section-card">
+                        <div class="table-container">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Username</th>
+                                        <th>Time/Date</th>
+                                        <th>Category</th>
+                                        <th>Description</th>
+                                        <th>GPS Location</th>
+                                        <th>Device Info</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="incidentsTable">
+                                    <tr>
+                                        <td colspan="6" class="text-center">
+                                            <div class="loading">
+                                                <i class="fas fa-spinner fa-spin"></i>
+                                                <p>Loading incident reports...</p>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Locations Section -->
+                <section class="content-section hidden" id="locations">
+                    <div class="section-header">
+                        <h2><i class="fas fa-map-marker-alt"></i> Campus Locations</h2>
+                        <p>Manage security posts, clinics, and emergency points</p>
+                        <button class="btn btn-primary" onclick="SafeCampus.showAddLocationModal()">
+                            <i class="fas fa-plus"></i>
+                            Add New Location
+                        </button>
+                    </div>
+                    
+                    <div class="locations-grid" id="locationsGrid">
+                        <div class="loading">
+                            <i class="fas fa-spinner fa-spin"></i>
+                            <p>Loading locations...</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- News Section -->
+                <section class="content-section hidden" id="news">
+                    <div class="section-header">
+                        <h2><i class="fas fa-newspaper"></i> News Updates</h2>
+                        <p>Post safety updates and announcements</p>
+                        <button class="btn btn-primary" onclick="SafeCampus.showAddNewsModal()">
+                            <i class="fas fa-plus"></i>
+                            Post News
+                        </button>
+                    </div>
+                    
+                    <div class="news-list" id="newsList">
+                        <div class="loading">
+                            <i class="fas fa-spinner fa-spin"></i>
+                            <p>Loading news...</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Analytics Section -->
+                <section class="content-section hidden" id="analytics">
+                    <div class="section-header">
+                        <h2><i class="fas fa-chart-bar"></i> Analytics</h2>
+                        <p>Insights and statistics from campus safety data</p>
+                    </div>
+                    
+                    <div class="analytics-grid">
+                        <div class="analytics-card">
+                            <h3><i class="fas fa-chart-pie"></i> Incident Categories</h3>
+                            <div id="categoryChart">
+                                <div class="loading">
+                                    <i class="fas fa-spinner fa-spin"></i>
+                                    <p>Loading chart...</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="analytics-card">
+                            <h3><i class="fas fa-calendar"></i> Monthly Trends</h3>
+                            <div id="monthlyChart">
+                                <div class="loading">
+                                    <i class="fas fa-spinner fa-spin"></i>
+                                    <p>Loading trends...</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- About Section -->
+                <section class="content-section hidden" id="about">
+                    <div class="section-header">
+                        <h2><i class="fas fa-info-circle"></i> About SafeCampus</h2>
+                        <p>System information and developer details</p>
+                    </div>
+                    
+                    <div class="about-card">
+                        <div class="about-header">
+                            <i class="fas fa-shield-alt"></i>
+                            <div>
+                                <h3>SafeCampus Admin v1.0</h3>
+                                <p>Campus Safety Management System</p>
+                            </div>
+                        </div>
+                        
+                        <div class="about-content">
+                            <h4>System Features:</h4>
+                            <ul>
+                                <li>Real-time incident reporting from mobile app</li>
+                                <li>Campus location management (security posts, clinics)</li>
+                                <li>News and safety alert broadcasting</li>
+                                <li>Analytics and reporting</li>
+                                <li>User-friendly admin interface</li>
+                            </ul>
+                            
+                            <h4>Developer Information:</h4>
+                            <div class="developers-list">
+                                <div class="developer">
+                                    <strong>Project:</strong> ICT602 Mobile Technology Group Project
+                                </div>
+
+                                <div class="developer">
+                                    <strong>Students:</strong>
+                                    <ul>
+                                        <li>Nurul Lailani Asyura binti Abdull Aziz (2023899266)</li>
+                                        <li>Nurhanisa Najwa binti Nordin (2023414412)</li>
+                                        <li>Puteri Noor Tassnim binti Abdul Mu'iz (2023837452)</li>
+                                        <li>Raja Nur Afieda binti Raja Abdul Halim (2023601134)</li>
+                                    </ul>
+                                </div>
+                                <div class="developer">
+                                    <strong>Program Code:</strong> CDCS2515B
+                                </div>
+                            </div>
+                            
+                            <h4>GitHub Repository:</h4>
+                            <a href="https://github.com/syushi-laniy/UniAlert" target="_blank" class="github-link">
+                                <i class="fab fa-github"></i>
+                                https://github.com/syushi-laniy/UniAlert
+                            </a>
+                            
+                            <div class="copyright">
+                                <p>© 2026 SafeCampus Admin. All rights reserved.</p>
+                                <p class="small">Developed for educational purposes as part of ICT602 Mobile Development course.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <!-- Add Location Modal -->
+    <div id="addLocationModal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-map-marker-alt"></i> Add Campus Location</h3>
+                <button class="modal-close" onclick="SafeCampus.closeModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="locationForm">
+                    <div class="form-group">
+                        <label for="locationName">Location Name *</label>
+                        <input type="text" id="locationName" placeholder="e.g., Main Gate Security Post" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="locationType">Location Type *</label>
+                        <select id="locationType" required>
+                            <option value="">Select type</option>
+                            <option value="security">Security Post</option>
+                            <option value="clinic">Clinic/Medical</option>
+                            <option value="emergency">Emergency Point</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="latitude">Latitude *</label>
+                            <input type="number" step="0.000001" id="latitude" placeholder="e.g., 6.453456" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="longitude">Longitude *</label>
+                            <input type="number" step="0.000001" id="longitude" placeholder="e.g., 100.509789" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="locationDesc">Description (Optional)</label>
+                        <textarea id="locationDesc" placeholder="Additional details about this location..." rows="3"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="SafeCampus.closeModal()">Cancel</button>
+                <button class="btn btn-primary" onclick="SafeCampus.saveLocation()">
+                    <i class="fas fa-save"></i>
+                    Save Location
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add News Modal -->
+    <div id="addNewsModal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-newspaper"></i> Post News Update</h3>
+                <button class="modal-close" onclick="SafeCampus.closeModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="newsForm">
+                    <div class="form-group">
+                        <label for="newsTitle">Title *</label>
+                        <input type="text" id="newsTitle" placeholder="e.g., Campus Safety Alert" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="newsContent">Content *</label>
+                        <textarea id="newsContent" placeholder="Enter the news content here..." rows="5" required></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="SafeCampus.closeModal()">Cancel</button>
+                <button class="btn btn-primary" onclick="SafeCampus.saveNews()">
+                    <i class="fas fa-paper-plane"></i>
+                    Post News
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div id="toastContainer"></div>
+
+    <!-- JavaScript Files -->
+    <script src="assets/js/firebase-config.js"></script>
+    <script src="assets/js/auth.js"></script>
+    <script src="assets/js/firestore.js"></script>
+    <script src="assets/js/ui.js"></script>
+    
+    <!-- App init handled in assets/js/firebase-config.js and ui.js -->
+</body>
+</html>
